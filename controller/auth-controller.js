@@ -24,7 +24,9 @@ const register=async (req,res)=>{
      user.email=email;
      user.username=username;
      user.password=password;
-    await user.save();
+    
+    userExist=await user.create({email:email,username:username,password:password});
+     await user.save();
      const payload=user.tokenPayload();
      const token=await jwt.sign(payload,process.env.SECRET_KEY,{expiresIn:eval(process.env.EXPIRES_IN)});
        res.status(201).cookie('token',token,{
