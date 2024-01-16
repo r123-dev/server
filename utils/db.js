@@ -1,5 +1,5 @@
 const mongoose=require('mongoose');
-const URI="mongodb://127.0.0.1:27017/vivek";
+const URI="mongodb+srv://rohanmourya879:vivek123@cluster0.upxigtg.mongodb.net/Vivek";
 
 
 const connectdb=async ()=>{

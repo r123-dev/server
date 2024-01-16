@@ -20,12 +20,12 @@ const register=async (req,res)=>{
      if(userExist){
       return res.status(400).json({msg:"email already"});
      }
-     const user=new User;
-     user.email=email;
-     user.username=username;
-     user.password=password;
-    
-    userExist=await user.create({email:email,username:username,password:password});
+     const user = new User({
+      
+      email: email,
+      username:username,
+      password:password
+  });
      await user.save();
      const payload=user.tokenPayload();
      const token=await jwt.sign(payload,process.env.SECRET_KEY,{expiresIn:eval(process.env.EXPIRES_IN)});
